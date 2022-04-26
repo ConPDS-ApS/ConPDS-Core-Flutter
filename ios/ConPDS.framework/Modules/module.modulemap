@@ -1,0 +1,11 @@
+framework module ConPDS {
+  umbrella header "ConPDS.h"
+
+  export *
+  module * { export * }
+}
+
+module ConPDS.Swift {
+    header "ConPDS-Swift.h"
+    requires objc
+}

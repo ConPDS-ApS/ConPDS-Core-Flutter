@@ -1,0 +1,63 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target armv7-apple-ios9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name ConPDS
+@_exported import ConPDS
+import Foundation
+import Security
+import Swift
+import UIKit
+public struct LicenseInfo {
+  public var appId: Swift.String?
+  public var expireDate: Foundation.Date?
+  public var lockAfterExpiration: Swift.Bool?
+  public var additionalDaysCount: Swift.Int?
+  public var notificationDelayHours: Swift.Int?
+  public var isUpdateAllowed: Swift.Bool?
+  public var maxOcrVersion: Swift.String?
+  public var maxParallelTasks: Swift.Int?
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class License : ObjectiveC.NSObject {
+  public static let shared: ConPDS.License
+  public enum Constants : Swift.String {
+    case licenseRequestURL
+    case publicKeyURL
+    case applicationId
+    case apiKey
+    case publicKey
+    case licenseApiKey
+    case platform
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum LicenseError : Swift.Error, Foundation.LocalizedError {
+    case invalidServerPublicKey
+    case invalidJSONResponse
+    case invalidResponse
+    case invalidURL
+    case invalidDevicId
+    case timeOut
+    case invalidAPIKey
+    public var errorDescription: Swift.String? {
+      get
+    }
+    public static func == (a: ConPDS.License.LicenseError, b: ConPDS.License.LicenseError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var licenseInfo: ConPDS.LicenseInfo? {
+    get
+    set
+  }
+  public func getLicenseInfo(apiKey: Swift.String, licenseApiKey: Swift.String, completion: @escaping (ConPDS.LicenseInfo?, Swift.Error?) -> ())
+  @objc deinit
+}
+extension ConPDS.License.Constants : Swift.Equatable {}
+extension ConPDS.License.Constants : Swift.Hashable {}
+extension ConPDS.License.Constants : Swift.RawRepresentable {}
+extension ConPDS.License.LicenseError : Swift.Equatable {}
+extension ConPDS.License.LicenseError : Swift.Hashable {}
